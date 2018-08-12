@@ -8,7 +8,7 @@
           <%= f.text_field :title, class: "form-control input-lg", placeholder: "Ingresa el titulo del POST" %>
         </div>
         <div class="form-group">
-          <%= f.text_area :body, class: "form-control input-lg", placeholder: "Escribe el POST" %>
+          <%= f.text_area :body, minlength: 250, class: "form-control input-lg", placeholder: "Escribe el POST" %>
         </div>
         <div>
           <%= f.submit form_title, class: "btn btn-primary btn-lg btn-block" %>
