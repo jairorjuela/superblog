@@ -3,8 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order("created_at DESC")
-    #@posts = @posts.where("title LIKE :title", title: "%#{params[:title]}%")
-    @posts = @posts.where("title ilike ?", "%#{params[:title]}%")
+    @posts = @posts.where("title LIKE :title", title: "%#{params[:title]}%")
+    #@posts = @posts.where("title ilike ?", "%#{params[:title]}%")
   end
 
   def new
