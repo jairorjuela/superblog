@@ -35,7 +35,7 @@
 
 .post-page {
   .post-header {
-    background: #303030;
+    background: #D6DBDF;
     color: #fafaf2;
     text-align: center;
     padding: 100px 25px;
@@ -43,13 +43,15 @@
     margin-bottom: 30px;
 
     h1 {
-      font-size: 32px;
+      color: black;
+      font-size: 38px;
       margin-top: 0;
+      text-align: center;
     }
 
     p {
-      font-size: 18px;
-      color: #ddd;
+      font-size: 20px;
+      color: #34495E;
       margin-top: 15px;
       margin-bottom: 40px;
     }
@@ -59,17 +61,17 @@
       font-weight: bold;
     }
 
-  }
+    .actions {
+      margin-top: 20px;
+      a {
+        color: #5F6A6A;
+        font-size: 25px;
+        margin-right: 9px;
 
-  .actions {
-    margin-top: 30px;
-    a {
-      color: #ccc;
-      font-size: 21px;
-      margin-right: 5px;
-
-      &:hover { color: white; }
+        &:hover { color: black; }
+      }
     }
+
   }
 
   .comments {
@@ -85,5 +87,16 @@
       width: 25px;
       margin: -3px 10px 0 -3px;
     }
+  }
+}
+
+.actions {
+  margin-top: 20px;
+  a {
+    color: #3498DB;
+    font-size: 18px;
+    margin-right: 5px;
+
+    &:hover { color: red; }
   }
 }
