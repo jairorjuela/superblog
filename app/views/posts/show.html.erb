@@ -1,26 +1,39 @@
 <div class="post-page">
   <header class="post-header">
-    <h1><%= @post.title %></h1>
-    <p><%= @post.body %></p>
+    <h1><%= markdown(@post.title) %></h1>
+    <p><%= markdown(@post.body) %></p>
+    <% if signed_in? && @post.user == current_user %>
+      <div class="actions">
+        <%= link_to "<span class='glyphicon glyphicon-pencil'>Editar </span>".html_safe, edit_post_path(@post) %>
+        <%= link_to "<span class='glyphicon glyphicon-trash'>Eliminar </span>".html_safe, @post, method: :delete, data: { confirm: "¿Estás seguro de eliminar este POST?" } %>
+      </div>
+    <% end %>
   </header>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="votes">
-          <h2>Votos</h2>
-        </div>
 
-        <div class="comments">
-          <h2>Comentarios</h2>
-        </div>
+  <div class="comments">
+    <h2>Comentarios</h2>
+
+    <% @post.comments.each do |comment| %>
+      <div class="panel panel-default">
+        <header class="panel-heading">
+          <img src="<%= Gravatar.new("#{comment.user.email}").image_url %>" class="img-circle"/> Comentado por: <%= comment.user.name %> hace <%= time_ago_in_words(comment.created_at)%>
+        </header>
+        <div class="panel-body"><%= markdown(comment.body) %></div>
       </div>
-    </div>
+    <% end %>
+    <% if signed_in? %>
+
+      <%= form_for [@post, @post.comments.build] do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, class: "form-control", placeholder: "Agregar comentario" %>
+        </div>
+        <div class="actions text-right">
+          <%= f.submit "Comentar", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% end %>
+
   </div>
+
 </div>
-<!-- <% if signed_in? %>
-  <div class="actions">
-    <%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_post_path(@post) %>
-    <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, @post, method: :delete, data: { confirm: "¿Estás seguro de eliminar este POST?" } %>
-  </div>
-<% end %> -->

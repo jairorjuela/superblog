@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path
     else
+      flash[:notice] = "Usuario o contraseña invalidos"
       render :new
     end
   end
