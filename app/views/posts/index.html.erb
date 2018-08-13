@@ -6,9 +6,24 @@
         <% @posts.each do |post| %>
           <div class="post clearfix">
             <div class="post-details">
-              <h1 class="post-title"><%= link_to post.title, post %></h1>
-              <h6><%= time_ago_in_words(post.created_at)%></h6>
-              <p class="post-body"><%= truncate(post.body, :length => 250) %></p>
+              <h1 class="post-title"><%= link_to markdown(post.title), post %></h1>
+                <h6>
+                  Publicado por: <%= post.user.name %>
+                  <%= time_ago_in_words(post.created_at)%>
+                </h6>
+              <p class="post-body">
+                <%= truncate(strip_tags(markdown(post.body)), :length => 250) %>
+              </p>
+            </div>
+            <% if signed_in? && post.user == current_user %>
+              <div class="actions">
+                <%= link_to "<span class='glyphicon glyphicon-pencil'>Editar </span>".html_safe, edit_post_path(post) %>
+                <%= link_to "<span class='glyphicon glyphicon-trash'>Eliminar </span>".html_safe, post, method: :delete, data: { confirm: "¿Estás seguro de eliminar este POST?" } %>
+              </div>
+            <% end %>
+            <div class="post-comments">
+              <span class="glyphicon glyphicon-comment"></span>
+              <span class="comment-count"><%= post.comments.count %></span>
             </div>
           </div>
         <% end %>

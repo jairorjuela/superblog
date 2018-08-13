@@ -17,6 +17,19 @@
         &:hover, &:focus { color: black; text-decoration: none; }
       }
     }
+
+    .post-comments {
+      float: right;
+      color: #ccc;
+      padding: 10px;
+
+      .glyphicon { font-size: 21px; }
+      .comment-count {
+        margin-left: 15px;
+        font-size: 18px;
+        vertical-align: text-bottom;
+      }
+    }
   }
 }
 
@@ -45,19 +58,18 @@
       font-size: 18px;
       font-weight: bold;
     }
+
   }
 
-  .votes {
-    margin-bottom: 40px;
-    padding: 0 25px;
+  .actions {
+    margin-top: 30px;
+    a {
+      color: #ccc;
+      font-size: 21px;
+      margin-right: 5px;
 
-    h2 {
-      color: #666;
-      font-size: 16px;
-      margin-bottom: 20px;
+      &:hover { color: white; }
     }
-
-    img { width: 40px; }
   }
 
   .comments {
